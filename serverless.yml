@@ -2,7 +2,6 @@ org: wild0kl
 app: coinbase-dca
 service: coinbase-dca
 configValidationMode: error
-useDotenv: true
 
 frameworkVersion: '2'
 
@@ -13,6 +12,14 @@ provider:
   memorySize: 128
   timeout: 30
   lambdaHashingVersion: 20201221
+  environment:
+    # common
+    CBP_KEY: ${param:CBP_KEY}
+    CBP_SECRET: ${param:CBP_SECRET}
+    CBP_PASSPHRASE: ${param:CBP_PASSPHRASE}
+    # buy
+    CBP_USD_ACCOUNT: ${param:CBP_USD_ACCOUNT}
+    BUY_BTC_AMOUNT: ${param:BUY_BTC_AMOUNT}
 
 functions:
   get:
@@ -20,14 +27,12 @@ functions:
   buy:
     handler: handler.buy
     events:
-      # Invoke Lambda function every minute
       - schedule:
           enabled: true
-          rate: rate(1008 minutes)
+          rate: "cron(23 23 * * ? *)" # 11:23pm every day
   deposit:
     handler: handler.deposit
     events:
-      # Invoke Lambda function every minute
       - schedule:
           enabled: false
-          rate: "cron(0 9 1,15 * ? *)"
+          rate: "cron(8 7 1,15 * ? *)" # 1st and 15th of every month at 7:08am

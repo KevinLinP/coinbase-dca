@@ -4,7 +4,7 @@ const axios = require('axios')
 const crypto = require('crypto')
 
 module.exports.get = async (event, context) => {
-  const response = await CoinbasePro.get({path: `/products`})
+  const response = await CoinbasePro.get({path: `/accounts`})
   console.log(response)
 };
 
