@@ -1,0 +1,30 @@
+org: wild0kl
+app: coinbase-dca
+service: coinbase-dca
+configValidationMode: error
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-2 # oregon
+  memorySize: 128
+  timeout: 30
+  lambdaHashingVersion: 20201221
+
+functions:
+  buy:
+    handler: handler.buy
+    events:
+      # Invoke Lambda function every minute
+      - schedule:
+          enabled: false
+          rate: rate(3 hours)
+  deposit:
+    handler: handler.deposit
+    events:
+      # Invoke Lambda function every minute
+      - schedule:
+          enabled: false
+          rate: "cron(0 9 1,15 * ? *)"

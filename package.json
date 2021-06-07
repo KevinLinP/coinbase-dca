@@ -1,0 +1,7 @@
+{
+  "name": "coinbase-dca",
+  "version": "0.1.0",
+  "description": "Periodically buys stuff",
+  "author": "Kevin Lin",
+  "license": "UNLICENSED"
+}
