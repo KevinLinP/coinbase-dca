@@ -14,12 +14,12 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     # common
-    CBP_KEY: ${param:CBP_KEY}
-    CBP_SECRET: ${param:CBP_SECRET}
-    CBP_PASSPHRASE: ${param:CBP_PASSPHRASE}
+    CBP_KEY: ${env:CBP_KEY}
+    CBP_SECRET: ${env:CBP_SECRET}
+    CBP_PASSPHRASE: ${env:CBP_PASSPHRASE}
     # buy
-    CBP_USD_ACCOUNT: ${param:CBP_USD_ACCOUNT}
-    BUY_BTC_AMOUNT: ${param:BUY_BTC_AMOUNT}
+    CBP_USD_ACCOUNT: ${env:CBP_USD_ACCOUNT}
+    BUY_BTC_AMOUNT: ${env:BUY_BTC_AMOUNT}
 
 functions:
   get:
