@@ -29,10 +29,10 @@ functions:
     events:
       - schedule:
           enabled: true
-          rate: "cron(23 23 * * ? *)" # 11:23pm every day
+          rate: "cron(23 3 * * ? *)" # this time is in UTC
   deposit:
     handler: handler.deposit
     events:
       - schedule:
           enabled: false
-          rate: "cron(8 7 1,15 * ? *)" # 1st and 15th of every month at 7:08am
+          rate: "cron(7 12 1,15 * ? *)" # 1st and 15th of every month
