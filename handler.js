@@ -4,7 +4,7 @@ const axios = require('axios')
 const crypto = require('crypto')
 
 module.exports.get = async (event, context) => {
-  const response = await CoinbasePro.get({path: `/accounts`})
+  const response = await CoinbasePro.get({path: `/payment-methods`})
   console.log(response)
 };
 
@@ -39,8 +39,21 @@ module.exports.buy = async (event, context) => {
 };
 
 module.exports.deposit = async (event, context) => {
-  const time = new Date();
-  console.log(`deposit ${time}`);
+  const now = new Date()
+
+  const response = await CoinbasePro.post({
+    path: `/deposits/payment-method`,
+    body: {
+      amount: parseFloat(process.env.DEPOSIT_USD_AMOUNT),
+      currency: 'USD',
+      payment_method_id: process.env.CBP_PAYMENT_METHOD
+    }
+  })
+
+  console.log(JSON.stringify({
+    now: now.toISOString(),
+    response
+  }))
 };
 
 class CoinbasePro {
