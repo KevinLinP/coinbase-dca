@@ -35,4 +35,4 @@ functions:
     events:
       - schedule:
           enabled: false
-          rate: "cron(12 00 1 * ? *)" # 1st of every month
+          rate: "cron(0 12 1 * ? *)" # 1st and 15th of every month
