@@ -20,6 +20,9 @@ provider:
     # buy
     CBP_USD_ACCOUNT: ${env:CBP_USD_ACCOUNT}
     BUY_BTC_AMOUNT: ${env:BUY_BTC_AMOUNT}
+    # deposit
+    CBP_PAYMENT_METHOD: ${env:CBP_PAYMENT_METHOD}
+    DEPOSIT_USD_AMOUNT: ${env:DEPOSIT_USD_AMOUNT}
 
 functions:
   get:
@@ -34,5 +37,5 @@ functions:
     handler: handler.deposit
     events:
       - schedule:
-          enabled: false
-          rate: "cron(0 12 1 * ? *)" # 1st and 15th of every month
+          enabled: true
+          rate: "cron(0 12 1 * ? *)" # ~8am on the first day of the month
